@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -28,6 +30,10 @@ public class PrecesBilde {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Setter(value=AccessLevel.NONE)
 	private int precesBildeId;
+	
+	@ManyToOne
+	@JoinColumn(name="PreceId")
+	private Prece prece;
 	
 	@Column(name="Bilde")
 	@NotNull

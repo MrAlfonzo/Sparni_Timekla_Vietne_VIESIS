@@ -1,12 +1,14 @@
 package lv.latvijasrokdarbi.model;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -33,6 +35,10 @@ public class Atlaide {
 	@Setter(value = AccessLevel.NONE)
 	private int atlaideId;
 	
+	@OneToMany(mappedBy = "atlaide")
+	@ToString.Exclude
+	private Collection<Prece> preces;
+	
 	@Column(name="Nosaukums")
 	@NotNull
 	@Size(min=3, max=50)
@@ -58,12 +64,19 @@ public class Atlaide {
 	@Pattern(regexp = ".", message = "Jebkadi simboli")
 	private String apraksts;
 	
-	public Atlaide(String nosaukums, float atlaidesApmers, LocalDateTime sakumaDatumsLaiks, LocalDateTime beiguDatumsLaiks, String apraksts) {
+	public Atlaide(String nosaukums, float atlaidesApmers, LocalDateTime sakumaDatumsLaiks, LocalDateTime beiguDatumsLaiks, String apraksts, Prece ... preces) {
 		setNosaukums(nosaukums);
 		setAtlaidesApmers(atlaidesApmers);
 		setSakumaDatumsLaiks(sakumaDatumsLaiks);
 		setBeiguDatumsLaiks(beiguDatumsLaiks);
 		setApraksts(apraksts);
+		for(Prece tempP: preces)
+			addPrece(tempP);
 	}
 	
+	public void addPrece(Prece prece) {
+		if(!preces.contains(prece)) {
+			preces.add(prece);
+		}
+	}
 }

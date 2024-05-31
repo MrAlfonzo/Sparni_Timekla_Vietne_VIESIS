@@ -1,10 +1,15 @@
 package lv.latvijasrokdarbi.model;
 
+import java.util.Collection;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -31,6 +36,18 @@ public class Prece {
 	@Setter(value=AccessLevel.NONE)
 	private int preceId;
 	
+	@ManyToOne
+	@JoinColumn(name="KategorijaId")
+	private Kategorija kategorija;
+	
+	@ManyToOne
+	@JoinColumn(name="AtlaideId")
+	private Atlaide atlaide;
+	
+	@OneToMany(mappedBy = "prece")
+	@ToString.Exclude
+	private Collection<PrecesBilde> bildes;
+	
 	@Column(name="Nosaukums")
 	@NotNull
 	@Size(min=3, max=50)
@@ -53,10 +70,19 @@ public class Prece {
 	@Max(500)
 	private int daudzums;
 	
-	public Prece(String nosaukums, String apraksts, float cena, int daudzums) {
+	public Prece(Kategorija kategorija, String nosaukums, String apraksts, float cena, int daudzums, PrecesBilde ... precesBildes) {
+		setKategorija(kategorija);
 		setNosaukums(nosaukums);
 		setApraksts(apraksts);
 		setCena(cena);
 		setDaudzums(daudzums);
+		for(PrecesBilde tempP: precesBildes) {
+			addPrecesBilde(tempP);
+		}
+	}
+	public void addPrecesBilde(PrecesBilde precesBilde) {
+		if(!bildes.contains(precesBilde)) {
+			bildes.add(precesBilde);
+		}
 	}
 }
