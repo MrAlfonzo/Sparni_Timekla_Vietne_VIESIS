@@ -52,4 +52,11 @@ public class Prece {
 	@Min(1)
 	@Max(500)
 	private int daudzums;
+	
+	public Prece(String nosaukums, String apraksts, float cena, int daudzums) {
+		setNosaukums(nosaukums);
+		setApraksts(apraksts);
+		setCena(cena);
+		setDaudzums(daudzums);
+	}
 }
