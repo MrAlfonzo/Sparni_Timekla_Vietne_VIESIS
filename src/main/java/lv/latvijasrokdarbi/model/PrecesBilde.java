@@ -6,8 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -21,21 +19,19 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-@Table(name="PreceTable")
+@Table(name="PrecesBildeTable")
 @Entity
-public class Prece {
+public class PrecesBilde {
 	
 	@Id
-	@Column(name="PreceId")
+	@Column(name="PrecesBildeId")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Setter(value=AccessLevel.NONE)
-	private int preceId;
+	private int precesBildeId;
 	
-	@Column(name="Nosaukums")
+	@Column(name="Bilde")
 	@NotNull
-	@Size(min=3, max=50)
-	@Pattern(regexp = "[\\w\\d ]+", message = "Tikai burti, skaitli un atstarpe")
-	private String nosaukums;
+	private String bilde;
 	
 	@Column(name="Apraksts")
 	@NotNull
@@ -43,13 +39,8 @@ public class Prece {
 	@Pattern(regexp = ".", message = "Jebkadi simboli")
 	private String apraksts;
 	
-	@Column(name="Cena")
-	@Min(0)
-	@Max(1000)
-	private float cena;
-	
-	@Column(name="Daudzums")
-	@Min(1)
-	@Max(500)
-	private int daudzums;
+	public PrecesBilde(String bilde, String apraksts) {
+		setBilde(bilde);
+		setApraksts(apraksts);
+	}
 }
