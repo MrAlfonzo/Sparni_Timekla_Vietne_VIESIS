@@ -48,9 +48,17 @@ public class Kategorija {
 	@Pattern(regexp = ".", message = "Jebkadi simboli")
 	private String apraksts;
 	
-	public Kategorija(String nosaukums, String apraksts) {
+	public Kategorija(String nosaukums, String apraksts, Prece ... preces) {
 		setNosaukums(nosaukums);
 		setApraksts(apraksts);
+		for(Prece tempP: preces)
+			addPrece(tempP);
+	}
+	
+	public void addPrece(Prece prece) {
+		if(!preces.contains(prece)) {
+			preces.add(prece);
+		}
 	}
 	
 }
