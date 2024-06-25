@@ -37,16 +37,17 @@ public class PrecesBilde {
 	
 	@Column(name="Bilde")
 	@NotNull
-	@Pattern(regexp = "([a-zA-Z]:)?(\\\\[a-zA-Z0-9_.-]+)+\\\\?", message = "Faila ceļš")
+	@Pattern(regexp = "([a-zA-Z]:)?((\\\\|\\/)[a-zA-Z0-9_.-]+)+(\\\\|\\/)?", message = "Faila ceļš")
 	private String bilde;
 	
 	@Column(name="Apraksts")
 	@NotNull
 	@Size(min=3, max=280)
-	@Pattern(regexp = ".", message = "Jebkadi simboli")
+	@Pattern(regexp = ".+", message = "Jebkadi simboli")
 	private String apraksts;
 	
-	public PrecesBilde(String bilde, String apraksts) {
+	public PrecesBilde(Prece prece, String bilde, String apraksts) {
+		setPrece(prece);
 		setBilde(bilde);
 		setApraksts(apraksts);
 	}

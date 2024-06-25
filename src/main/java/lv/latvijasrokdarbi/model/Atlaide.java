@@ -1,6 +1,7 @@
 package lv.latvijasrokdarbi.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import jakarta.persistence.Column;
@@ -37,12 +38,12 @@ public class Atlaide {
 	
 	@OneToMany(mappedBy = "atlaide")
 	@ToString.Exclude
-	private Collection<Prece> preces;
+	private Collection<Prece> preces = new ArrayList<Prece>();
 	
 	@Column(name="Nosaukums")
 	@NotNull
 	@Size(min=3, max=50)
-	@Pattern(regexp = "[\\w\\d ]+", message = "Tikai burti, skaitli un atstarpe")
+	@Pattern(regexp = "[A-zÀ-ȕ0-9 ]+", message = "Tikai burti, skaitli un atstarpe")
 	private String nosaukums;
 	
 	@Column(name="AtlaidesApmers")
@@ -61,22 +62,22 @@ public class Atlaide {
 	@Column(name="Apraksts")
 	@NotNull
 	@Size(min=3, max=280)
-	@Pattern(regexp = ".", message = "Jebkadi simboli")
+	@Pattern(regexp = ".+", message = "Jebkadi simboli")
 	private String apraksts;
 	
-	public Atlaide(String nosaukums, float atlaidesApmers, LocalDateTime sakumaDatumsLaiks, LocalDateTime beiguDatumsLaiks, String apraksts, Prece ... preces) {
+	public Atlaide(String nosaukums, float atlaidesApmers, LocalDateTime sakumaDatumsLaiks, LocalDateTime beiguDatumsLaiks, String apraksts /*, Prece ... preces*/) {
 		setNosaukums(nosaukums);
 		setAtlaidesApmers(atlaidesApmers);
 		setSakumaDatumsLaiks(sakumaDatumsLaiks);
 		setBeiguDatumsLaiks(beiguDatumsLaiks);
 		setApraksts(apraksts);
-		for(Prece tempP: preces)
-			addPrece(tempP);
+//		for(Prece tempP: preces)
+//			addPrece(tempP);
 	}
 	
-	public void addPrece(Prece prece) {
-		if(!preces.contains(prece)) {
-			preces.add(prece);
-		}
-	}
+//	public void addPrece(Prece prece) {
+//		if(!preces.contains(prece)) {
+//			preces.add(prece);
+//		}
+//	}
 }
