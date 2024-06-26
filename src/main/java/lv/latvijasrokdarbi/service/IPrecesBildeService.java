@@ -17,5 +17,5 @@ public interface IPrecesBildeService {
 	
 	public abstract ArrayList<PrecesBilde> selectAllPrecesBildes() throws Exception;
 	
-	public abstract ArrayList<PrecesBilde> selectAllPrecesBildesByPrecesId(int id) throws Exception;
+	public abstract ArrayList<PrecesBilde> selectAllPrecesBildesByPreceId(int id) throws Exception;
 }
