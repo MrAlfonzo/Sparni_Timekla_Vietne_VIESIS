@@ -13,7 +13,7 @@ public interface IPrecesBildeService {
 	
 	public abstract void deletePrecesBildeById(int id) throws Exception;
 	
-	public abstract void deletePrecesBildeByPreceId(int id) throws Exception;
+	public abstract void deletePrecesBildesByPreceId(int id) throws Exception;
 	
 	public abstract ArrayList<PrecesBilde> selectAllPrecesBildes() throws Exception;
 	
