@@ -2,48 +2,61 @@ package lv.latvijasrokdarbi.service.impl;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lv.latvijasrokdarbi.model.Kategorija;
+import lv.latvijasrokdarbi.repo.IKategorijaRepo;
 import lv.latvijasrokdarbi.service.IKategorijaService;
 
 @Service
 public class KategorijaServiceImpl implements IKategorijaService{
 
+	@Autowired
+	private IKategorijaRepo kategorijaRepo;
+	
 	@Override
 	public void createKategorija(Kategorija kategorija) {
-		// TODO Auto-generated method stub
-		
+		Kategorija existingKategorija = kategorijaRepo.findByNosaukumsAndApraksts(kategorija.getNosaukums(), kategorija.getApraksts());
+		if(existingKategorija==null) kategorijaRepo.save(kategorija);
 	}
 
 	@Override
 	public Kategorija retrieveKategorijaById(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if (id < 0) throw new Exception("id jābūt pozitīvam");
+		if (kategorijaRepo.existsById(id)) return kategorijaRepo.findById(id).get();
+		else throw new Exception("Nav kategorija ar id: "+id);
 	}
 
 	@Override
 	public void updateKategorijaById(int id, Kategorija kategorija) throws Exception {
-		// TODO Auto-generated method stub
+		Kategorija toUpdate = retrieveKategorijaById(id);
+
+		toUpdate.setNosaukums(kategorija.getNosaukums());
+		toUpdate.setApraksts(kategorija.getApraksts());
+		
+		kategorijaRepo.save(toUpdate);
 		
 	}
 
 	@Override
 	public void deleteKategorijaById(int id) throws Exception {
-		// TODO Auto-generated method stub
+		kategorijaRepo.delete(retrieveKategorijaById(id));
 		
 	}
 
 	@Override
 	public ArrayList<Kategorija> selectAllKategorijas() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if(kategorijaRepo.count()==0) throw new Exception("kategorijaRepo ir tukša");
+		return (ArrayList<Kategorija>) kategorijaRepo.findAll();
 	}
 
 	@Override
 	public ArrayList<Kategorija> filterByNosaukumsOrApraksts(String phrase) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		if(phrase==null) throw new Exception("frāze ir null");
+		if(kategorijaRepo.count()==0) throw new Exception("kategorijaRepo ir tukša");
+		ArrayList<Kategorija> filteredKategorija = kategorijaRepo.findByNosaukumsIgnoreCaseContainingOrAprakstsIgnoreCaseContaining(phrase, phrase);
+		return filteredKategorija;
 	}
 
 }
