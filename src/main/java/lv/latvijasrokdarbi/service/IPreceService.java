@@ -21,9 +21,9 @@ public interface IPreceService {
 	
 	public abstract ArrayList<Prece> selectAllPrecesByKategorijaId(int id) throws Exception;
 	
-	public abstract ArrayList<Prece> selectAllPrecesPriceLessThan(float price)throws Exception;
+	public abstract ArrayList<Prece> selectAllPrecesCenaLessThan(float cena)throws Exception;
 	
-	public abstract ArrayList<Prece> filterByQuantity(int threshold) throws Exception;
+	public abstract ArrayList<Prece> filterByDaudzums(int daudzums) throws Exception;
 	
 	public abstract ArrayList<Prece> filterByNosaukumsOrApraksts(String phrase) throws Exception;
 }
