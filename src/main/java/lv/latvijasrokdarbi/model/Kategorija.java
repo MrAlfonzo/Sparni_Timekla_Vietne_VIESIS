@@ -1,5 +1,6 @@
 package lv.latvijasrokdarbi.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import jakarta.persistence.Column;
@@ -34,23 +35,29 @@ public class Kategorija {
 	
 	@OneToMany(mappedBy = "kategorija")
 	@ToString.Exclude
-	private Collection<Prece> preces;
+	private Collection<Prece> preces  = new ArrayList<Prece>();
 	
 	@Column(name="Nosaukums")
 	@NotNull
 	@Size(min=3, max=50)
-	@Pattern(regexp = "[\\w\\d ]+", message = "Tikai burti, skaitli un atstarpe")
+	@Pattern(regexp = "[A-zÀ-ȕ0-9 ]+", message = "Tikai burti, skaitli un atstarpe")
 	private String nosaukums;
 	
 	@Column(name="Apraksts")
 	@NotNull
 	@Size(min=3, max=280)
-	@Pattern(regexp = ".", message = "Jebkadi simboli")
+	@Pattern(regexp = ".+", message = "Jebkadi simboli")
 	private String apraksts;
 	
 	public Kategorija(String nosaukums, String apraksts) {
 		setNosaukums(nosaukums);
 		setApraksts(apraksts);
+	}
+	
+	public void addPrece(Prece prece) {
+		if(!preces.contains(prece)) {
+			preces.add(prece);
+		}
 	}
 	
 }
