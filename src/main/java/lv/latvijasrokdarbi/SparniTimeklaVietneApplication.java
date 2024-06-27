@@ -13,6 +13,7 @@ import lv.latvijasrokdarbi.model.Prece;
 import lv.latvijasrokdarbi.model.PrecesBilde;
 import lv.latvijasrokdarbi.repo.IAtlaideRepo;
 import lv.latvijasrokdarbi.repo.IKategorijaRepo;
+import lv.latvijasrokdarbi.repo.IPircejsRepo;
 import lv.latvijasrokdarbi.repo.IPreceRepo;
 import lv.latvijasrokdarbi.repo.IPrecesBildeRepo;
 
@@ -24,7 +25,7 @@ public class SparniTimeklaVietneApplication {
 	}
 	@Bean
 	public CommandLineRunner testDB(IAtlaideRepo atlaideRepo, IKategorijaRepo kategorijaRepo,
-			IPreceRepo preceRepo, IPrecesBildeRepo precesBildeRepo) {
+			IPreceRepo preceRepo, IPrecesBildeRepo precesBildeRepo, IPircejsRepo pircejsRepo) {
 
 		return new CommandLineRunner() {
 

@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<body>
+	<p>Visu pircēju lapa</p>
+	<p th:text="${msg}"></p>
+	<table border="1">
+		<td>PircejsId</td>
+		<td>Vards</td>
+		<td>Uzvards</td>
+		<td>Epasts</td>
+		<td>Adrese</td>
+		<td>BankasNosaukums</td>
+		<td>BankasSwiftKods</td>
+		<td>BankasKonts</td>
+		<tr th:each="tempP : ${mydata}">
+			<td th:text="${tempP.getPircejsId()}" ></td>
+			<td th:text="${tempP.getVards()}" ></td>
+			<td th:text="${tempP.getUzvards()}"></td>
+			<td th:text="${tempP.getEpasts()}"></td>
+			<td th:text="${tempP.getAdrese()}"></td>
+			<td th:text="${tempP.getBankasNosaukums()}"></td>
+			<td th:text="${tempP.getBankasSwiftKods()}"></td>
+			<td th:text="${tempP.getBankasKonts()}"></td>
+		</tr>
+		
+	</table>
+</body>
+
+
+</html>
