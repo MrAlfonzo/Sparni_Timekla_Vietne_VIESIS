@@ -42,11 +42,9 @@ public class PasakumaBilde {
 	@NotNull
 	@Size(min = 3, max = 4000)
 	@Pattern(regexp = "[A-ZĒŪĪĻĶĢŠĀŽČŅa-zēūīļķģšāžčņ ]+", message = "Tikai burti un atstarpes ir atļautas")
-	@Column(name = "Nosaukums")
+	@Column(name = "Apraksts")
 	private String apraksts;
-	
-	private 
-	
+
 	public PasakumaBilde (String bilde, String nosaukums, String apraksts) {
 		
 		setBilde(bilde);
