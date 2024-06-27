@@ -1,5 +1,7 @@
 package lv.latvijasrokdarbi.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,18 +65,59 @@ public class AtlaideController {
 		}
 		
 	}
-//	
-//	@GetMapping("/update/{id}") // localhost:8080/atlaide/update/1
-//	public String getPreceUpdateById(@PathVariable("id") int id, Model model) {
-//		try {
-//			Prece toUpdate = preceService.retrievePreceById(id);
-//			model.addAttribute("prece", toUpdate);
-//			model.addAttribute("id", id);
-//			return "prece-update-page";
-//		}
-//		catch (Exception e) {
-//			model.addAttribute("mydata",e.getMessage());
-//			return "error-page";
-//		}
-//	}
+	
+	@GetMapping("/update/{id}") // localhost:8080/atlaide/update/1
+	public String getAtlaideUpdateById(@PathVariable("id") int id, Model model) {
+		try {
+			Atlaide toUpdate = atlaideService.retrieveAtlaideById(id);
+			model.addAttribute("atlaide", toUpdate);
+			model.addAttribute("id", id);
+			return "atlaide-update-page";
+		}
+		catch (Exception e) {
+			model.addAttribute("mydata",e.getMessage());
+			return "error-page";
+		}
+	}
+	@PostMapping("/update/{id}")
+	public String postAtlaideUpdateById(@PathVariable("id") int id, 
+			@Valid Atlaide atlaide, BindingResult result, Model model) {
+		try {
+			atlaideService.updateAtlaideById(id, atlaide);
+			return "redirect:/atlaide/all/"+id;
+		}
+		catch (Exception e) {
+			model.addAttribute("mydata",e.getMessage());
+			return "error-page";
+		}
+	}
+	
+	@GetMapping("/delete/{id}") // localhost:8080/atlaide/delete/1
+	public String getAtlaideDelete(@PathVariable("id") int id, Model model) {
+		try {
+			atlaideService.deleteAtlaideById(id);
+			ArrayList<Atlaide> allAtlaides = atlaideService.selectAllAtlaides();
+			model.addAttribute("mydata", allAtlaides);
+			return "atlaide-all-page";
+		} catch (Exception e) {
+			model.addAttribute("mydata",e.getMessage());
+			return "error-page";
+		}
+		
+	}
+	
+	@GetMapping("meklet/{param}") // localhost:8080/atlaide/meklet/{param}
+	public String getAtlaideFilterByNosaukumsOrApraksts(@PathVariable("param") String param, Model model) {
+		
+		try {
+			ArrayList<Atlaide> result = atlaideService.filterByNosaukumsOrApraksts(param);
+			model.addAttribute("mydata", result);
+			model.addAttribute("msg", "Rezultāti frāzei '"+param+"'");
+			return "atlaide-all-page";
+		} catch (Exception e) {
+			model.addAttribute("mydata", e.getMessage());
+			return "error-page";
+		}
+		
+	}
 }
