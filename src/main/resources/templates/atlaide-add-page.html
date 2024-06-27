@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<p>Izveidot atlaidi lapa</p>
+	<form th:action="@{/atlaide/add}" method="post" th:object="${atlaide}">
+		<table border="1">
+			<tr>
+				<td>Nosaukums</td>
+				<td><input type="text" th:field="*{nosaukums}" /></td>
+				<td th:if="${#fields.hasErrors('nosaukums')}" th:errors="*{nosaukums}"> </td>
+			</tr>
+			<tr>
+				<td>AtlaidesApmers</td>
+				<td><input type="text" th:field="*{atlaidesApmers}" /></td>
+				<td th:if="${#fields.hasErrors('atlaidesApmers')}" th:errors="*{tlaidesApmers}"></td>
+			</tr>
+			<tr>
+				<td>SakumaDatumsLaiks</td>
+				<td><input type="datetime-local" min="2024-06-01T00:00" max="2099-12-30T23:59" th:field="*{sakumaDatumsLaiks}" /></td>
+				<td th:if="${#fields.hasErrors('sakumaDatumsLaiks')}" th:errors="*{sakumaDatumsLaiks}"></td>
+			</tr>
+			<tr>
+				<td>BeiguDatumsLaiks</td>
+				<td><input type="datetime-local" min="2024-06-01T00:00" max="2099-12-30T23:59"
+						th:field="*{beiguDatumsLaiks}" /></td>
+				<td th:if="${#fields.hasErrors('beiguDatumsLaiks')}" th:errors="*{beiguDatumsLaiks}"></td>
+			</tr>
+			<tr>
+				<td>Apraksts</td>
+				<td><input type="text" th:field="*{apraksts}" /></td>
+				<td th:if="${#fields.hasErrors('apraksts')}" th:errors="*{apraksts}"></td>
+			</tr>
+
+
+		</table>
+		<button type="submit">saglabāt</button>
+	</form>
+</body>
+
+</html>

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -53,10 +55,12 @@ public class Atlaide {
 	
 	@Column(name="SakumaDatumsLaiks")
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
 	private LocalDateTime sakumaDatumsLaiks;
 	
 	@Column(name="BeiguDatumsLaiks")
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'hh:mm")
 	private LocalDateTime beiguDatumsLaiks;
 	
 	@Column(name="Apraksts")

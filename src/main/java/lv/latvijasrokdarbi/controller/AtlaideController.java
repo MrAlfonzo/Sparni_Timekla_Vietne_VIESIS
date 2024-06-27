@@ -58,7 +58,7 @@ public class AtlaideController {
 	
 	@PostMapping("/add") // localhost:8080/atlaide/add
 	public String postAtlaideAdd(@Valid Atlaide atlaide, BindingResult result) {
-		if(result.hasErrors()) return "prece-add-page";
+		if(result.hasErrors()) return "atlaide-add-page";
 		else {
 			atlaideService.createAtlaide(atlaide);
 			return "redirect:/atlaide/all";	

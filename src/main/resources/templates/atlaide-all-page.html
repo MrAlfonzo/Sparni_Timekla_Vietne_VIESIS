@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<body>
+	<p>Visu atlaižu lapa</p>
+	<p th:text="${msg}"></p>
+	<table border="1">
+		<td>AtlaideId</td>
+		<td>Nosaukums</td>
+		<td>AtlaidesApmers</td>
+		<td>SakumaDatumsLaiks</td>
+		<td>BeiguDatumsLaiks</td>
+		<td>Apraksts</td>
+		<tr th:each="tempA : ${mydata}">
+			<td th:text="${tempA.getAtlaideId()}" ></td>
+			<td th:text="${tempA.getNosaukums()}" ></td>
+			<td th:text="${tempA.getAtlaidesApmers()}"></td>
+			<td th:text="${tempA.getSakumaDatumsLaiks()}"></td>
+			<td th:text="${tempA.getBeiguDatumsLaiks()}"></td>
+			<td th:text="${tempA.getApraksts()}"></td>
+		</tr>
+		
+	</table>
+</body>
+
+
+</html>
