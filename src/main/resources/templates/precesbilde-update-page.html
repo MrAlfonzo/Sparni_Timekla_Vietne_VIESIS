@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<p>Izveidot preces bildi lapa</p>
+	<form th:action="@{/precesbilde/update/__${id}__}" method="post" th:object="${precesBilde}">
+		<table border="1">
+			<tr>
+				<td>PreceId</td>
+				<td><input type="text" th:field="*{prece}" /></td>
+				<td th:if="${#fields.hasErrors('prece')}" th:errors="*{prece}"> </td>
+			</tr>
+			<tr>
+				<td>Bilde</td>
+				<td><input type="text" th:field="*{bilde}" /></td>
+				<td th:if="${#fields.hasErrors('bilde')}" th:errors="*{bilde}"> </td>
+			</tr>
+			<tr>
+				<td>Apraksts</td>
+				<td><input type="text" th:field="*{apraksts}" /></td>
+				<td th:if="${#fields.hasErrors('apraksts')}" th:errors="*{apraksts}"></td>
+			</tr>
+
+
+		</table>
+		<button type="submit">saglabāt</button>
+	</form>
+</body>
+
+</html>

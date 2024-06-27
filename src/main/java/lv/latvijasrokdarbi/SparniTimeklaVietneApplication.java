@@ -49,9 +49,9 @@ public class SparniTimeklaVietneApplication {
 				preceRepo.save(prece1);
 				preceRepo.save(prece2);
 				
-				PrecesBilde precesBilde1 = new PrecesBilde(prece1, "/images/bilde1.png", "skaista bilde");
-				PrecesBilde precesBilde2 = new PrecesBilde(prece1, "/images/bilde2.png", "normāla bilde");
-				PrecesBilde precesBilde3 = new PrecesBilde(prece2, "/images/bilde3.png", "izcila bilde");
+				PrecesBilde precesBilde1 = new PrecesBilde(prece1, "/images/bilde1.jpg", "skaista bilde");
+				PrecesBilde precesBilde2 = new PrecesBilde(prece1, "/images/bilde2.jpg", "normāla bilde");
+				PrecesBilde precesBilde3 = new PrecesBilde(prece2, "/images/bilde4.jpg", "izcila bilde");
 				precesBildeRepo.save(precesBilde1);
 				precesBildeRepo.save(precesBilde2);
 				precesBildeRepo.save(precesBilde3);

@@ -37,7 +37,7 @@ public class PrecesBilde {
 	
 	@Column(name="Bilde")
 	@NotNull
-	@Pattern(regexp = "([a-zA-Z]:)?((\\\\|\\/)[a-zA-Z0-9_.-]+)+(\\\\|\\/)?", message = "Faila ceļš")
+	@Pattern(regexp = "([a-zA-Z]:)?((\\\\|\\/)?[a-zA-Z0-9_.-]+)+(\\\\|\\/)?", message = "Faila ceļš")
 	private String bilde;
 	
 	@Column(name="Apraksts")

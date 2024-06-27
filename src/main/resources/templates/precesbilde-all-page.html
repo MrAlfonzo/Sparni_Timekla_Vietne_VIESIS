@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<body>
+	<p>Visu preču bilžu lapa</p>
+	<p th:text="${msg}"></p>
+	<table border="1">
+		<td>PrecesBildeId</td>
+		<td>PreceId</td>
+		<td>Bilde</td>
+		<td>Apraksts</td>
+		<tr th:each="tempPB : ${mydata}">
+			<td th:text="${tempPB.getPrecesBildeId()}" ></td>
+			<td th:text="${tempPB.getPrece().getPreceId()}" ></td>
+			<td><img style="height:100px;width:100px;" th:src="${tempPB.getBilde()}" alt="bilde"></td>
+			<td th:text="${tempPB.getApraksts()}"></td>
+		</tr>
+		
+	</table>
+</body>
+
+
+</html>
