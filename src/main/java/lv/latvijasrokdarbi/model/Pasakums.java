@@ -1,13 +1,17 @@
 package lv.latvijasrokdarbi.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -30,8 +34,16 @@ public class Pasakums {
 	@Column(name = "pasakumsId")
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO) //autoincrement
-	private int pasakumiId;
+	private int pasakumsId;
+	
+	@OneToMany(mappedBy = "pasakums")
+	@ToString.Exclude
+	private Collection<PasakumaBilde> pasakumaBilde = new ArrayList<PasakumaBilde>();
 
+	@ManyToOne
+	@JoinColumn(name="pkID")
+	private PasakumaKategorija pasakumaKategorija;
+	
 	@NotNull
 	@Column(name = "sDatumLaiks")
 	private LocalDateTime sDatumsLaiks;

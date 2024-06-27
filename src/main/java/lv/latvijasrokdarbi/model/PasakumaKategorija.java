@@ -1,12 +1,14 @@
 package lv.latvijasrokdarbi.model;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -26,8 +28,12 @@ public class PasakumaKategorija {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "P_K_ID")
+    @Column(name = "pkID")
     private int pkID;
+	
+	@OneToMany(mappedBy = "pasakumaKategorija")
+	@ToString.Exclude
+	private Collection<Pasakums> pasakums = new ArrayList<Pasakums>();
 
 	@NotNull
 	@Size(min = 3, max = 50)
