@@ -26,22 +26,28 @@
 				<tr>
 					<td>Kategorija</td>
 					<td><select name="kategorija">
-						<option value="">Izvēlaties kategoriju</option>
-				    	<option th:each="kat : ${kategorijas}"
-							
-		 	            	th:value="${kat.getKategorijaId()}"
-			            	th:text="${kat.getNosaukums()}"></option>
+						<option value=""></option>
+						<div th:each="kat : ${kategorijas}">
+							<option th:value="${kat.getKategorijaId()}"
+								th:text="${kat.getNosaukums()}"
+								th:if="${kat}==*{kategorija}" selected="selected"></option>
+							<option th:value="${kat.getKategorijaId()}"
+								th:text="${kat.getNosaukums()}"
+								th:unless="${kat}==*{kategorija}"></option></div>
 					</select></td>
 					<td th:if="${#fields.hasErrors('kategorija')}" th:errors="*{kategorija}"></td>
 				</tr>
 				<tr>
 					<td>Atlaide</td>
 					<td><select name="atlaide">
-						<option value="">Izvēlaties atlaidi</option>
-				    	<option th:each="atl : ${atlaides}"
-							
-				         	th:value="${atl.getAtlaideId()}"
-				        	th:text="${atl.getNosaukums()}"></option>
+						<option value=""></option>
+						<div th:each="atl : ${atlaides}">
+							<option th:value="${atl.getAtlaideId()}"
+								th:text="${atl.getNosaukums()}"
+								th:if="${atl}==*{atlaide}" selected="selected"></option>
+							<option th:value="${atl.getAtlaideId()}"
+								th:text="${atl.getNosaukums()}"
+								th:unless="${atl}==*{atlaide}"></option></div>
 					</select></td>
 					<td th:if="${#fields.hasErrors('atlaide')}" th:errors="*{atlaide}"></td>
 				</tr>

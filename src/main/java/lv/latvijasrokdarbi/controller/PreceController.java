@@ -97,6 +97,8 @@ public class PreceController {
 			Prece toUpdate = preceService.retrievePreceById(id);
 			model.addAttribute("prece", toUpdate);
 			model.addAttribute("id", id);
+			model.addAttribute("atlaides", atlaideService.selectAllAtlaides());
+			model.addAttribute("kategorijas", kategorijaService.selectAllKategorijas());
 			return "prece-update-page";
 		}
 		catch (Exception e) {
@@ -110,6 +112,8 @@ public class PreceController {
 			@Valid Prece prece, BindingResult result, Model model) {
 		try {
 			preceService.updatePreceById(id, prece);
+			model.addAttribute("atlaides", atlaideService.selectAllAtlaides());
+			model.addAttribute("kategorijas", kategorijaService.selectAllKategorijas());
 			return "redirect:/prece/all/"+id; //parlec uz /prece/all/{id}
 		}
 		catch (Exception e) {
