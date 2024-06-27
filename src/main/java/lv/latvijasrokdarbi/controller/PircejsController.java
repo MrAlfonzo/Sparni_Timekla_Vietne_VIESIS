@@ -36,7 +36,7 @@ public class PircejsController {
 		
 	}
 	
-	@GetMapping("all/{id}") // localhost:8080/prece/all/1
+	@GetMapping("all/{id}") // localhost:8080/pircejs/all/1
 	public String getPircejs(@PathVariable("id") int id, Model model) {
 		
 		try {

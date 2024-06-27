@@ -47,7 +47,7 @@ public class Pircejs {
 	@NotNull
 	@Column(name="Epasts")
 	@Size(min = 6, max = 30)
-	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,6}$")
+	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
 	private String epasts;
 	
 	@NotNull

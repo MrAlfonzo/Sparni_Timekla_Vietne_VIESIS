@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 import lv.latvijasrokdarbi.model.Atlaide;
 import lv.latvijasrokdarbi.model.Kategorija;
+import lv.latvijasrokdarbi.model.Pircejs;
 import lv.latvijasrokdarbi.model.Prece;
 import lv.latvijasrokdarbi.model.PrecesBilde;
 import lv.latvijasrokdarbi.repo.IAtlaideRepo;
@@ -56,7 +57,16 @@ public class SparniTimeklaVietneApplication {
 				precesBildeRepo.save(precesBilde1);
 				precesBildeRepo.save(precesBilde2);
 				precesBildeRepo.save(precesBilde3);
-		
+				
+				
+				Pircejs pircejs1 = new Pircejs("Aldis", "Gaspačo", "agaspacho@gmail.com", "Liepāja, Brīvības iela 20", "SWEDBANK", "LVSWED12", "LVHABA12345");
+				Pircejs pircejs2 = new Pircejs("Bruno", "Bīrs", "bbruno@inbox.lv", "Rīga Brīvības gatve 357", "SEB", "LVSEBU123", "LVSEBUB1234");
+				Pircejs pircejs3 = new Pircejs("Cālis", "Cīrulis", "cakcak@hotmail.ru", "Ventspils, Inženieru iela 101", "LUMINOR", "LVLUMI999", "LVHABA1234567");
+				pircejsRepo.save(pircejs1);
+				pircejsRepo.save(pircejs2);
+				pircejsRepo.save(pircejs3);
+				
+				
 			}
 
 		};
