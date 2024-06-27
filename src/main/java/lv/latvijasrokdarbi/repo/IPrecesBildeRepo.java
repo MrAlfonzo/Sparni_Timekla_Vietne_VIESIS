@@ -11,6 +11,6 @@ public interface IPrecesBildeRepo  extends CrudRepository<PrecesBilde, Integer>{
 
 	PrecesBilde findByPreceAndBildeAndApraksts(Prece prece, String bilde, String apraksts);
 
-	ArrayList<PrecesBilde> findByPreceId(int id);
+	ArrayList<PrecesBilde> findByPrece_PreceId(int id);
 
 }

@@ -10,14 +10,14 @@ public interface IPreceRepo  extends CrudRepository<Prece, Integer>{
 
 	Prece findByNosaukumsAndAprakstsAndCena(String nosaukums, String apraksts, float cena);
 
-	ArrayList<Prece> findByCenaLessThan(float cena);
+	ArrayList<Prece> findByCenaLessThanEqual(float cena);
 
-	ArrayList<Prece> findByDaudzumsLessThan(int daudzums);
+	ArrayList<Prece> findByDaudzumsLessThanEqual(int daudzums);
 
 	ArrayList<Prece> findByNosaukumsIgnoreCaseContainingOrAprakstsIgnoreCaseContaining(String phrase, String phrase2);
 
-	ArrayList<Prece> findByKategorijaId(int id);
+	ArrayList<Prece> findByKategorija_KategorijaId(int id);
 
-	ArrayList<Prece> findByAtlaideId(int id);
+	ArrayList<Prece> findByAtlaide_AtlaideId(int id);
 
 }

@@ -63,7 +63,7 @@ public class PrecesBildeServiceImpl implements IPrecesBildeService{
 	@Override
 	public ArrayList<PrecesBilde> selectAllPrecesBildesByPreceId(int id) throws Exception {
 		if(precesBildeRepo.count()==0) throw new Exception("precesBildeRepo ir tukša");
-		return (ArrayList<PrecesBilde>) precesBildeRepo.findByPreceId(id);
+		return (ArrayList<PrecesBilde>) precesBildeRepo.findByPrece_PreceId(id);
 	}
 
 }
