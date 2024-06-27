@@ -63,21 +63,21 @@ public class PreceServiceImpl implements IPreceService{
 	public ArrayList<Prece> selectAllPrecesByAtlaideId(int id) throws Exception {
 		if (id < 0) throw new Exception("id jābūt pozitīvam");
 		if(preceRepo.count()==0) throw new Exception("preceRepo ir tukša");
-		return (ArrayList<Prece>) preceRepo.findByAtlaideId(id);
+		return (ArrayList<Prece>) preceRepo.findByAtlaide_AtlaideId(id);
 	}
 
 	@Override
 	public ArrayList<Prece> selectAllPrecesByKategorijaId(int id) throws Exception {
 		if (id < 0) throw new Exception("id jābūt pozitīvam");
 		if(preceRepo.count()==0) throw new Exception("preceRepo ir tukša");
-		return (ArrayList<Prece>) preceRepo.findByKategorijaId(id);
+		return (ArrayList<Prece>) preceRepo.findByKategorija_KategorijaId(id);
 	}
 
 	@Override
 	public ArrayList<Prece> selectAllPrecesCenaLessThan(float cena) throws Exception {
 		if(cena<=0) throw new Exception("Cena nevar būt 0 vai zemāka");
 		if(preceRepo.count()==0) throw new Exception("preceRepo ir tukša");
-		ArrayList<Prece> filteredPreces = preceRepo.findByCenaLessThan(cena);
+		ArrayList<Prece> filteredPreces = preceRepo.findByCenaLessThanEqual(cena);
 		return filteredPreces;
 	}
 
@@ -85,7 +85,7 @@ public class PreceServiceImpl implements IPreceService{
 	public ArrayList<Prece> filterByDaudzums(int daudzums) throws Exception {
 		if(daudzums<=0) throw new Exception("Daudzums nevar būt 0 vai zemāks");
 		if(preceRepo.count()==0) throw new Exception("preceRepo ir tukša");
-		ArrayList<Prece> filteredPreces = preceRepo.findByDaudzumsLessThan(daudzums);
+		ArrayList<Prece> filteredPreces = preceRepo.findByDaudzumsLessThanEqual(daudzums);
 		return filteredPreces;
 	}
 
