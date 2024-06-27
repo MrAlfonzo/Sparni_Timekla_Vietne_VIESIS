@@ -47,6 +47,10 @@ public class Prece {
 	
 	@OneToMany(mappedBy = "prece")
 	@ToString.Exclude
+	private Collection<PirkumaElements> pirkumaElements = new ArrayList<PirkumaElements>();
+	
+	@OneToMany(mappedBy = "prece")
+	@ToString.Exclude
 	private Collection<PrecesBilde> bildes = new ArrayList<PrecesBilde>();
 	
 	@Column(name="Nosaukums")
