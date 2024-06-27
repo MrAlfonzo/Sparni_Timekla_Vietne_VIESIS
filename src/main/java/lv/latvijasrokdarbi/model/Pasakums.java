@@ -58,6 +58,8 @@ public class Pasakums {
 	@Column(name = "Apraksts")
 	private String apraksts;
 	
+	
+	
 	public Pasakums(LocalDateTime sDatumsLaiks, LocalDateTime bDatumsLaiks, String nosaukums
 			, String vieta, String apraksts) {
 		

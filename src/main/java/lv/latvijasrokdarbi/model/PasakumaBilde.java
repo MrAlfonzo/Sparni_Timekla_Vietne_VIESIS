@@ -45,6 +45,8 @@ public class PasakumaBilde {
 	@Column(name = "Nosaukums")
 	private String apraksts;
 	
+	private 
+	
 	public PasakumaBilde (String bilde, String nosaukums, String apraksts) {
 		
 		setBilde(bilde);
