@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	
+<body>
+	<p>Visu kategoriju lapa</p>
+	<p th:text="${msg}"></p>
+	<table border="1">
+		<td>KategorijaId</td>
+		<td>Nosaukums</td>
+		<td>Apraksts</td>
+		<tr th:each="tempK : ${mydata}">
+			<td th:text="${tempK.getKategorijaId()}" ></td>
+			<td th:text="${tempK.getNosaukums()}" ></td>
+			<td th:text="${tempK.getApraksts()}"></td>
+		</tr>
+		
+	</table>
+</body>
+
+
+</html>

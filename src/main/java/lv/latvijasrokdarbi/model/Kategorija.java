@@ -54,10 +54,10 @@ public class Kategorija {
 		setApraksts(apraksts);
 	}
 	
-	public void addPrece(Prece prece) {
-		if(!preces.contains(prece)) {
-			preces.add(prece);
-		}
-	}
+//	public void addPrece(Prece prece) {
+//		if(!preces.contains(prece)) {
+//			preces.add(prece);
+//		}
+//	}
 	
 }

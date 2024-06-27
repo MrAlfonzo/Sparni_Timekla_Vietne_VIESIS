@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<p>Atjaunināt kategoriju lapa</p>
+	<form th:action="@{/kategorija/update/__${id}__}" method="post" th:object="${kategorija}">
+		<table border="1">
+			<tr>
+				<td>Nosaukums</td>
+				<td><input type="text" th:field="*{nosaukums}" /></td>
+				<td th:if="${#fields.hasErrors('nosaukums')}" th:errors="*{nosaukums}"> </td>
+			</tr>
+			<tr>
+				<td>Apraksts</td>
+				<td><input type="text" th:field="*{apraksts}" /></td>
+				<td th:if="${#fields.hasErrors('apraksts')}" th:errors="*{apraksts}"></td>
+			</tr>
+
+
+		</table>
+		<button type="submit">saglabāt</button>
+	</form>
+</body>
+
+</html>
