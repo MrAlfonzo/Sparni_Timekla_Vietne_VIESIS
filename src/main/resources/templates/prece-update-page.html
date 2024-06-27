@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+		<p>Atjaunināt preci lapa</p>
+		<form th:action = "@{/prece/update/__${id}__}" method="post" th:object="${prece}">
+			<table border="1">
+				<tr>
+					<td>Nosaukums</td>
+					<td><input type="text" th:field="*{nosaukums}"	/></td>
+					<td th:if="${#fields.hasErrors('nosaukums')}" th:errors="*{nosaukums}" > </td>
+				</tr>
+				<tr>
+					<td>Apraksts</td>
+					<td><input type="text" th:field="*{apraksts}"	/></td>
+					<td th:if="${#fields.hasErrors('apraksts')}" th:errors="*{apraksts}"></td>
+				</tr>
+				<tr>
+					<td>Cena</td>
+					<td><input type="text" th:field="*{cena}"	/></td>
+					<td th:if="${#fields.hasErrors('cena')}" th:errors="*{cena}"></td>
+				</tr>
+				<tr>
+					<td>Daudzums</td>
+					<td><input type="text" th:field="*{daudzums}"	/></td>
+					<td th:if="${#fields.hasErrors('daudzums')}" th:errors="*{daudzums}"></td>
+				</tr>
+				<tr>
+					<td>Kategorija</td>
+					<td><select name="kategorija">
+						<option value="">Izvēlaties kategoriju</option>
+				    	<option th:each="kat : ${kategorijas}"
+							
+		 	            	th:value="${kat.getKategorijaId()}"
+			            	th:text="${kat.getNosaukums()}"></option>
+					</select></td>
+					<td th:if="${#fields.hasErrors('kategorija')}" th:errors="*{kategorija}"></td>
+				</tr>
+				<tr>
+					<td>Atlaide</td>
+					<td><select name="atlaide">
+						<option value="">Izvēlaties atlaidi</option>
+				    	<option th:each="atl : ${atlaides}"
+							
+				         	th:value="${atl.getAtlaideId()}"
+				        	th:text="${atl.getNosaukums()}"></option>
+					</select></td>
+					<td th:if="${#fields.hasErrors('atlaide')}" th:errors="*{atlaide}"></td>
+				</tr>
+								
+			</table>
+			<button type="submit">saglabāt</button>
+		</form>
+	</body>
+</html>

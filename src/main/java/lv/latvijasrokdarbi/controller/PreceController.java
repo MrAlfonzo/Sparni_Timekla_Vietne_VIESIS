@@ -13,13 +13,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
 import lv.latvijasrokdarbi.model.Prece;
+import lv.latvijasrokdarbi.service.IAtlaideService;
+import lv.latvijasrokdarbi.service.IKategorijaService;
 import lv.latvijasrokdarbi.service.IPreceService;
 
 @Controller
 @RequestMapping("/prece")
 public class PreceController {
+	
 	@Autowired
 	private IPreceService preceService;
+	
+	@Autowired
+	private IKategorijaService kategorijaService;
+	@Autowired
+	private IAtlaideService atlaideService;
 	
 	@GetMapping("/all") // localhost:8080/prece/all
 	public String getPreceAll(Model model) {
@@ -53,13 +61,27 @@ public class PreceController {
 	@GetMapping("/add") // localhost:8080/prece/add
 	public String getPreceAdd(Model model) {
 		model.addAttribute("prece", new Prece());
+		try {
+			model.addAttribute("atlaides", atlaideService.selectAllAtlaides());
+			model.addAttribute("kategorijas", kategorijaService.selectAllKategorijas());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "prece-add-page";
 		
 	}
 	
 	@PostMapping("/add") // localhost:8080/prece/add
-	public String postPreceAdd(@Valid Prece prece, BindingResult result) {
+	public String postPreceAdd(@Valid Prece prece, BindingResult result, Model model) {
 		if(result.hasErrors()) {
+			try {
+				model.addAttribute("atlaides", atlaideService.selectAllAtlaides());
+				model.addAttribute("kategorijas", kategorijaService.selectAllKategorijas());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			return "prece-add-page";
 		}
 		else {

@@ -1,12 +1,15 @@
 package lv.latvijasrokdarbi.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lv.latvijasrokdarbi.model.Prece;
+import lv.latvijasrokdarbi.model.PrecesBilde;
 import lv.latvijasrokdarbi.repo.IPreceRepo;
+import lv.latvijasrokdarbi.repo.IPrecesBildeRepo;
 import lv.latvijasrokdarbi.service.IPreceService;
 
 @Service
@@ -14,6 +17,9 @@ public class PreceServiceImpl implements IPreceService{
 	
 	@Autowired
 	private IPreceRepo preceRepo;
+	
+	@Autowired
+	private IPrecesBildeRepo precesBildeRepo;
 	
 	@Override
 	public void createPrece(Prece prece) {
@@ -49,6 +55,13 @@ public class PreceServiceImpl implements IPreceService{
 
 	@Override
 	public void deletePreceById(int id) throws Exception {
+		Collection<PrecesBilde> precesBildes = retrievePreceById(id).getBildes();
+		if(!precesBildes.isEmpty()) {
+			for(PrecesBilde tempB : precesBildes) {
+				tempB.setPrece(null);
+				precesBildeRepo.save(tempB);
+			}
+		}
 		preceRepo.delete(retrievePreceById(id));
 		
 	}
