@@ -10,7 +10,7 @@ public interface IPircejsRepo extends CrudRepository<Pircejs, Integer>{
 	
 		Pircejs findByPircejsId(int id);
 		
-		ArrayList<Pircejs> findByEpastsIgnoreCaseContaining(String epasts);
+		Pircejs findByEpastsIgnoreCaseContaining(String epasts);
 		
 		ArrayList<Pircejs> findByVardsIgnoreCaseContainingOrUzvardsIgnoreCaseContaining(String vards, String uzvards);
 

@@ -52,7 +52,7 @@ public class Pircejs {
 	@NotNull
 	@Column(name="Epasts")
 	@Size(min = 6, max = 30)
-	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,}$")
+	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
 	private String epasts;
 	
 	@NotNull
@@ -68,7 +68,7 @@ public class Pircejs {
 	
 	@Column(name="BankasSwiftKods")
 	@Size(min = 8, max = 11)
-	@Pattern(regexp="[A-Z}{6}[A-Z0-9]{2,}")
+	@Pattern(regexp="[A-Z]{6}[A-Z0-9]+")
 	private String bankasSwiftKods;
 	
 	@Column(name="BankasKonts")

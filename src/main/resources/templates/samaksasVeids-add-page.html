@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<body>
+		<p>Izveidot samaksas veidu lapa</p>
+		<form th:action = "@{/samaksasveids/add}" method="post" th:object="${samaksasVeids}">
+			<table border="1">
+				<tr>
+					<td>Nosaukums</td>
+					<td><input type="text" th:field="*{nosaukums}"	/></td>
+					<td th:if="${#fields.hasErrors('nosaukums')}" th:errors="*{nosaukums}" > </td>
+				</tr>
+				<tr>
+					<td>Piezīmes</td>
+					<td><input type="text" th:field="*{piezimes}"	/></td>
+					<td th:if="${#fields.hasErrors('piezimes')}" th:errors="*{piezimes}"></td>
+				</tr>				
+			</table>
+			<button type="submit">saglabāt</button>
+		</form>
+	</body>
+</html>
