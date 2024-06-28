@@ -1,12 +1,15 @@
 package lv.latvijasrokdarbi.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lv.latvijasrokdarbi.model.Atlaide;
+import lv.latvijasrokdarbi.model.Prece;
 import lv.latvijasrokdarbi.repo.IAtlaideRepo;
+import lv.latvijasrokdarbi.repo.IPreceRepo;
 import lv.latvijasrokdarbi.service.IAtlaideService;
 
 @Service
@@ -14,6 +17,8 @@ public class AtlaideServiceImpl implements IAtlaideService {
 
 	@Autowired
 	private IAtlaideRepo atlaideRepo;
+	@Autowired
+	private IPreceRepo preceRepo;
 
 	@Override
 	public void createAtlaide(Atlaide atlaide) {
@@ -50,6 +55,13 @@ public class AtlaideServiceImpl implements IAtlaideService {
 
 	@Override
 	public void deleteAtlaideById(int id) throws Exception {
+		Collection<Prece> preces = retrieveAtlaideById(id).getPreces();
+		if(!preces.isEmpty()) {
+			for(Prece tempP : preces) {
+				tempP.setAtlaide(null);
+				preceRepo.save(tempP);
+			}
+		}
 		atlaideRepo.delete(retrieveAtlaideById(id));
 
 	}

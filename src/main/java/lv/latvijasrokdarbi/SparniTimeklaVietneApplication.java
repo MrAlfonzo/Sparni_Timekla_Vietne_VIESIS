@@ -12,11 +12,13 @@ import lv.latvijasrokdarbi.model.Kategorija;
 import lv.latvijasrokdarbi.model.Pircejs;
 import lv.latvijasrokdarbi.model.Prece;
 import lv.latvijasrokdarbi.model.PrecesBilde;
+import lv.latvijasrokdarbi.model.SamaksasVeids;
 import lv.latvijasrokdarbi.repo.IAtlaideRepo;
 import lv.latvijasrokdarbi.repo.IKategorijaRepo;
 import lv.latvijasrokdarbi.repo.IPircejsRepo;
 import lv.latvijasrokdarbi.repo.IPreceRepo;
 import lv.latvijasrokdarbi.repo.IPrecesBildeRepo;
+import lv.latvijasrokdarbi.repo.ISamaksasVeidsRepo;
 
 @SpringBootApplication
 public class SparniTimeklaVietneApplication {
@@ -26,7 +28,7 @@ public class SparniTimeklaVietneApplication {
 	}
 	@Bean
 	public CommandLineRunner testDB(IAtlaideRepo atlaideRepo, IKategorijaRepo kategorijaRepo,
-			IPreceRepo preceRepo, IPrecesBildeRepo precesBildeRepo, IPircejsRepo pircejsRepo) {
+			IPreceRepo preceRepo, IPrecesBildeRepo precesBildeRepo, IPircejsRepo pircejsRepo, ISamaksasVeidsRepo samaksasVeidsRepo) {
 
 		return new CommandLineRunner() {
 
@@ -66,6 +68,10 @@ public class SparniTimeklaVietneApplication {
 				pircejsRepo.save(pircejs2);
 				pircejsRepo.save(pircejs3);
 				
+				SamaksasVeids samaksasVeids1 = new SamaksasVeids("Internetbanka", "Labdien?");
+				SamaksasVeids samaksasVeids2 = new SamaksasVeids("Bitcoin", "Labvakar?");
+				samaksasVeidsRepo.save(samaksasVeids1);
+				samaksasVeidsRepo.save(samaksasVeids2);
 				
 			}
 

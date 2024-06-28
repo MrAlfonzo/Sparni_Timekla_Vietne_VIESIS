@@ -1,12 +1,15 @@
 package lv.latvijasrokdarbi.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lv.latvijasrokdarbi.model.Kategorija;
+import lv.latvijasrokdarbi.model.Prece;
 import lv.latvijasrokdarbi.repo.IKategorijaRepo;
+import lv.latvijasrokdarbi.repo.IPreceRepo;
 import lv.latvijasrokdarbi.service.IKategorijaService;
 
 @Service
@@ -14,6 +17,8 @@ public class KategorijaServiceImpl implements IKategorijaService{
 
 	@Autowired
 	private IKategorijaRepo kategorijaRepo;
+	@Autowired
+	private IPreceRepo preceRepo;
 	
 	@Override
 	public void createKategorija(Kategorija kategorija) {
@@ -41,6 +46,13 @@ public class KategorijaServiceImpl implements IKategorijaService{
 
 	@Override
 	public void deleteKategorijaById(int id) throws Exception {
+		Collection<Prece> preces = retrieveKategorijaById(id).getPreces();
+		if(!preces.isEmpty()) {
+			for(Prece tempP : preces) {
+				tempP.setKategorija(null);
+				preceRepo.save(tempP);
+			}
+		}
 		kategorijaRepo.delete(retrieveKategorijaById(id));
 		
 	}
