@@ -2,8 +2,6 @@ package lv.latvijasrokdarbi.service;
 
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Service;
-
 import lv.latvijasrokdarbi.model.Pircejs;
 
 public interface IPircejsService {

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
-import lv.latvijasrokdarbi.model.Pircejs;
 import lv.latvijasrokdarbi.model.SamaksasVeids;
 import lv.latvijasrokdarbi.service.ISamaksasVeidsService;
 
