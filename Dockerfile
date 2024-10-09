@@ -1,28 +1,28 @@
-# Step 1: Build stage using a Maven image
+# Izmanto Maven attēlu
 FROM maven:3.8.7-eclipse-temurin-17 as build
 
-# Set the working directory inside the container
+# Iestata darba direktoriju konteinerī
 WORKDIR /app
 
-# Copy your Maven project files (pom.xml and source code) into the container
+# Iekopē Maven projekta failus konteinerī
 COPY pom.xml .
 COPY src ./src
 
-# Run Maven to clean and package the application (creates the JAR file)
+# Izveido JAR failu izlaižot testus
 RUN mvn clean package -DskipTests
 
 
-# Step 1: Use an official OpenJDK image as the base
+# Izmanto OpenJDK attēlu
 FROM openjdk:17-jdk-alpine
 
-# Step 2: Expose the application port
+# Norāda lietotnes izmantoto portu
 EXPOSE 8080
 
-# Step 3: Define a build argument for the JAR file
+# Definē JAR failu
 ARG JAR_FILE=target/Sparni_Timekla_Vietne-0.0.1-SNAPSHOT.jar
 
-# Step 4: Copy the JAR file to the container (use the ARG variable)
+# Iekopē JAR failu konteinerī izmantojot Maven
 COPY --from=build /app/${JAR_FILE} sparni-timekla-vietne.jar
 
-# Step 5: Run the application
+# Palaiž lietotni
 ENTRYPOINT ["java", "-jar", "/sparni-timekla-vietne.jar"]
